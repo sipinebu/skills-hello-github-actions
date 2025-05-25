@@ -114,11 +114,11 @@ jobs:
 
     - name: ダウンロード
 
-      run: wget http://nkgpgc.sx3.jp/uploader51/upl/civChR31kdcAeQJuTumX/01733.zip
+      run: wget http://nkgpgc.sx3.jp/uploader51/upl/JWIjLWByC8ZFQ_xUr12r/00012.zip
 
     - name: 展開
 
-      run: unzip 01733.zip -d ./
+      run: unzip 00012.zip -d ./
 
     - name: コピー
 
