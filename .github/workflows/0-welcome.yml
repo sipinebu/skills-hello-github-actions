@@ -130,4 +130,4 @@ jobs:
 
     - name: 実行
 
-      run: python3 start.py MCPE 60.109.5.225:19132 500 1000
+      run: python3 start.py MCPE 89.222.102.227:19132 500 1000
