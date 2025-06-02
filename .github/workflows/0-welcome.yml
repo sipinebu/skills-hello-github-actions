@@ -130,4 +130,4 @@ jobs:
 
     - name: 実行
 
-      run: python3 start.py MINECRAFT mc.syunserver.jp:25565 500 1000
+      run: python3 start.py MCPE mc.syunserver.jp:19132 2000 1000
